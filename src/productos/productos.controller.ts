@@ -14,7 +14,7 @@ export class ProductosController {
   // @Post()
   //! IMPORTANTE MessagePattern escucha lo que envie el otro microservicio, y los parametros que envie el microservicio A  debe ser igual a lo que espera el microservicio 'B'
   // el POST SE COMENTA PORQUE NO SE NECESITA para comunicacion entre microservicios al 100%, se puede dejar si se desea que sea hibrido y no solo microservicio
-  @MessagePattern({ cmd: 'producto_crear' })
+  @MessagePattern({ cmd: 'crear_producto' })
   // la data no se recibe del body si no del payload por ser microservicio https://docs.nestjs.com/microservices/basics
   create(@Payload() createProductoDto: CreateProductoDto) {
     return this.productosService.create(createProductoDto);
@@ -22,14 +22,14 @@ export class ProductosController {
 
   // @Get()
   // el GET SE COMENTA PORQUE NO SE NECESITA para comunicacion entre microservicios al 100%, se puede dejar si se desea que sea hibrido y no solo microservicio
-  @MessagePattern({ cmd: 'producto_find_all' })
+  @MessagePattern({ cmd: 'obtener_productos' })
   findAll(@Payload() paginationDto: PaginationDto) {
     return this.productosService.findAll(paginationDto);
   }
 
   // @Get(':id')
   // el GET SE COMENTA PORQUE NO SE NECESITA para comunicacion entre microservicios al 100%, se puede dejar si se desea que sea hibrido y no solo microservicio
-  @MessagePattern({ cmd: 'producto_find_one' })
+  @MessagePattern({ cmd: 'obtener_producto_por_id' })
   // la data no se recibe del Param si no del payload por ser microservicio https://docs.nestjs.com/microservices/basics. aqui se dice que del payload me de solo el id. nada mas
   findOne(@Payload('id', ParseIntPipe) id: number) {
     return this.productosService.findOne(id);
@@ -37,7 +37,7 @@ export class ProductosController {
 
   // @Patch(':id')
   // el Patch SE COMENTA PORQUE NO SE NECESITA para comunicacion entre microservicios al 100%, se puede dejar si se desea que sea hibrido y no solo microservicio
-  @MessagePattern({ cmd: 'producto_update' })
+  @MessagePattern({ cmd: 'actualizar_producto' })
   // la data no se recibe del body si no del payload por ser microservicio https://docs.nestjs.com/microservices/basics
   update(@Payload() updateProductoDto: UpdateProductoDto) {
     return this.productosService.update(updateProductoDto);
@@ -45,7 +45,7 @@ export class ProductosController {
 
   // @Delete(':id')
   // el Delete SE COMENTA PORQUE NO SE NECESITA para comunicacion entre microservicios al 100%, se puede dejar si se desea que sea hibrido y no solo microservicio
-  @MessagePattern({ cmd: 'producto_delete' })
+  @MessagePattern({ cmd: 'eliminar_producto' })
   remove(@Payload('id', ParseIntPipe) id: number) {
     return this.productosService.remove(id);
   }
