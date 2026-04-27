@@ -49,4 +49,11 @@ export class ProductosController {
   remove(@Payload('id', ParseIntPipe) id: number) {
     return this.productosService.remove(id);
   }
+
+
+  @MessagePattern({ cmd: 'validar_productos_por_ids' })
+  validarProducto(@Payload() ids: number[]) {
+    // Aquí puedes agregar la lógica de validación que necesites
+    return this.productosService.validarProductosPorIds(ids);
+  }
 }

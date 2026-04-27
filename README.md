@@ -1,15 +1,19 @@
-# Product Microservice
+# NOTA AYUDA
+
+SI HAGO UN CAMBIO EN EL CODIGO Y QUIERO QUE SE ACTUALICE AUTOMATICAMENTE EN DOCKER, PARA ELLO DEBEMOS MODIFICAR EL ARCHIVO `tsconfig.json`
+
+## Product Microservice
 
 su base de datos es un archivo fisico llamado dev.db, ya que su base de datos la tenemos en sqlite
 
-## para levantar el proyecto 
+## para levantar el proyecto
 
 1. Clonar el repositorio https://github.com/nest-microservicios-practica/productos-microservicio.git
 2. Instalar dependencias
 3. Crear un archivo `.env` basado en el `env.template`
 4. Ejecutar migración de prisma `npx prisma migrate dev`
 5. Ejecutar `npm run start:dev`
-
+6. no esta mal, luego de levantar el proyecto, ejecutar `npx prisma generate` para generar o actualizar el cliente de prisma
 
 ## notas personales
 
@@ -19,6 +23,6 @@ Si modificamos el modelo producto del archivo schema.prisma, ejemplo le creamos 
 despues debemos actualizar el cliente de prisma, para ello ejecutamos el comando:
 npx prisma generate
 
-# Pasos para convertir un proyecto en microservicios
+## Pasos para convertir un proyecto en microservicios
 
 ajustar el archivo main.ts como lo tenemos e indicar el protolo con el que se comunicara con los otros microservicios, ejemplo TCP

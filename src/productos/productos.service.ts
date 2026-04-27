@@ -83,6 +83,24 @@ export class ProductosService {
       },
       where: {id}
     })
+  }
 
+  async validarProductosPorIds(ids: number[]) {
+    const idsUnicos = Array.from(new Set(ids));
+    const productos = await this.prisma.producto.findMany({
+      where: {
+        id: {
+          in: idsUnicos
+        }
+      }
+    });
+
+    if (productos.length !== idsUnicos.length) {
+      throw new RpcException({
+        message: `Algunos productos no fueron encontrados`,
+        status: HttpStatus.NOT_FOUND
+      });
+    }
+    return productos;
   }
 }
