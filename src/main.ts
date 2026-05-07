@@ -24,6 +24,9 @@ async function bootstrap() {
     })
   );
   await app.listen();
-  logger.log(`**** MICROSERVICIO PRODUCTOS, Corriendo en el puerto ${envs.port} ****`)
+  // no esta por un puerto particular porque esta conectandose como nats, se comunica por mensajes, no por http,
+  // entonces no necesita un puerto para escuchar, sino que se conecta a nats y escucha los mensajes que le llegan a través de nats
+  // si quiero que escuche por un puerto, tendría que hacer el microservicio hibrido, ejemplo el microservicio de pagos
+  // logger.log(`**** MICROSERVICIO PRODUCTOS, Corriendo en el puerto ${envs.port} ****`)
 }
 bootstrap();
